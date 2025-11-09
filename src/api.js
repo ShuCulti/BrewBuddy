@@ -90,6 +90,10 @@ class ApiClient {
     return this.request('/users/me/');
   }
 
+  async searchUsers(query) {
+    return this.request(`/users/search/?q=${encodeURIComponent(query)}`);
+  }
+
   // Houses
   async getHouses() {
     return this.request('/houses/');
@@ -98,6 +102,13 @@ class ApiClient {
   async createHouse(houseData) {
     return this.request('/houses/', {
       method: 'POST',
+      body: JSON.stringify(houseData),
+    });
+  }
+
+  async updateHouse(houseId, houseData) {
+    return this.request(`/houses/${houseId}/`, {
+      method: 'PATCH',
       body: JSON.stringify(houseData),
     });
   }

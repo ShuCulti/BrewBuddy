@@ -26,7 +26,7 @@ function DrinkGrid({ drinks, onDrinkClick, onRestock }) {
       </div>
 
       <div className="drink-grid">
-        {drinks.map(drink => (
+        {(drinks || []).map(drink => (
           <div key={drink.id} className={`drink-card ${drink.is_low_stock ? 'low-stock' : ''}`}>
             <div className="drink-icon">🍺</div>
             <h4>{drink.name}</h4>
@@ -72,7 +72,7 @@ function DrinkGrid({ drinks, onDrinkClick, onRestock }) {
         ))}
       </div>
 
-      {drinks.length === 0 && (
+      {(!drinks || drinks.length === 0) && (
         <div className="no-drinks">
           <p>No drinks added yet. Add some drinks to get started!</p>
         </div>

@@ -31,6 +31,17 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(request.user)
         return Response(serializer.data)
 
+    @action(detail=False, methods=['get'])
+    def search(self, request):
+        """Search users by username"""
+        query = request.query_params.get('q', '').strip()
+        if not query or len(query) < 2:
+            return Response([])
+
+        users = User.objects.filter(username__icontains=query)[:10]
+        serializer = self.get_serializer(users, many=True)
+        return Response(serializer.data)
+
 class HouseViewSet(viewsets.ModelViewSet):
     serializer_class = HouseSerializer
     permission_classes = [IsAuthenticated]

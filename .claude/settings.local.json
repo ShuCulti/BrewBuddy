@@ -3,7 +3,8 @@
     "allow": [
       "Bash(python manage.py:*)",
       "Bash(python3:*)",
-      "Bash(source venv/bin/activate)"
+      "Bash(source venv/bin/activate)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

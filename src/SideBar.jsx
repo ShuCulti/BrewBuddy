@@ -30,34 +30,41 @@ function Sidebar({ isOpen, onClose, houses, selectedHouse, onSelectHouse, debts,
             <div className="sidebar-section">
               <h3>Member Debts</h3>
               <div className="debts-list">
-                {debts.map(debt => (
-                  <div key={debt.user_id} className="debt-item">
-                    <div className="debt-header">
-                      <span className={`debt-name ${debt.user_id === user.id ? 'current-user' : ''}`}>
-                        {debt.user_name}
-                        {debt.user_id === user.id && ' (You)'}
-                      </span>
-                      <span className="debt-amount">€{debt.total_owed.toFixed(2)}</span>
-                    </div>
-                    {debt.drink_breakdown.length > 0 && (
-                      <div className="drink-breakdown">
-                        {debt.drink_breakdown.map((item, idx) => (
-                          <div key={idx} className="breakdown-item">
-                            <span>{item.drink_type__name}</span>
-                            <span>{item.quantity}× (€{item.total_cost.toFixed(2)})</span>
-                          </div>
-                        ))}
+                {(debts || []).map(debt => {
+                  const totalOwed = Number(debt.total_owed ?? 0);
+                  const breakdown = debt.drink_breakdown || [];
+                  return (
+                    <div key={debt.user_id} className="debt-item">
+                      <div className="debt-header">
+                        <span className={`debt-name ${debt.user_id === user.id ? 'current-user' : ''}`}>
+                          {debt.user_name}
+                          {debt.user_id === user.id && ' (You)'}
+                        </span>
+                        <span className="debt-amount">€{totalOwed.toFixed(2)}</span>
                       </div>
-                    )}
-                  </div>
-                ))}
+                      {breakdown.length > 0 && (
+                        <div className="drink-breakdown">
+                          {breakdown.map((item, idx) => {
+                            const totalCost = Number(item.total_cost ?? 0);
+                            return (
+                              <div key={idx} className="breakdown-item">
+                                <span>{item.drink_type__name}</span>
+                                <span>{item.quantity}× (€{totalCost.toFixed(2)})</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
             <div className="sidebar-section">
               <h3>Members</h3>
               <div className="members-list">
-                {selectedHouse.members.map(member => (
+                {(selectedHouse.members || []).map(member => (
                   <div key={member.id} className="member-item">
                     <span className="member-avatar">{member.username[0].toUpperCase()}</span>
                     <span className="member-name">

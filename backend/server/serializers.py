@@ -36,18 +36,19 @@ class DrinkTypeSerializer(serializers.ModelSerializer):
 class ConsumptionSerializer(serializers.ModelSerializer):
     user_name = serializers.CharField(source='user.username', read_only=True)
     drink_name = serializers.CharField(source='drink_type.name', read_only=True)
-    
+
     class Meta:
         model = Consumption
-        fields = ['id', 'user', 'user_name', 'drink_type', 'drink_name', 
+        fields = ['id', 'user', 'user_name', 'drink_type', 'drink_name',
                   'house', 'quantity', 'timestamp', 'cost']
-        read_only_fields = ['id', 'timestamp', 'cost']
+        read_only_fields = ['id', 'user', 'timestamp', 'cost']
 
 class HouseSerializer(serializers.ModelSerializer):
     members = UserSerializer(many=True, read_only=True)
     member_ids = serializers.PrimaryKeyRelatedField(
-        many=True, 
-        write_only=True, 
+        many=True,
+        write_only=True,
+        required=False,
         queryset=User.objects.all(),
         source='members'
     )

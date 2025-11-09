@@ -10,9 +10,10 @@ function ShoppingList({ houseId, refreshKey }) {
     try {
       setLoading(true);
       const data = await api.getShoppingList(houseId);
-      setItems(data);
+      setItems(data || []);
     } catch (error) {
       console.error('Failed to load shopping list:', error);
+      setItems([]); // Set empty on error
     } finally {
       setLoading(false);
     }
