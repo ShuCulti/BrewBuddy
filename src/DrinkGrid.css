@@ -1,0 +1,152 @@
+.drink-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.drink-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.drink-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.drink-card.low-stock {
+  border: 2px solid #ff6b6b;
+}
+
+.drink-card.out-of-stock {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.drink-emoji {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.drink-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+  text-align: center;
+}
+
+.drink-price {
+  color: #667eea;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.drink-stock {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.drink-stock.low {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+.drink-stock.out {
+  color: #999;
+  font-weight: 600;
+}
+
+.restock-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.restock-btn:hover {
+  background: #5568d3;
+}
+
+.restock-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.restock-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.restock-content h3 {
+  margin-top: 0;
+}
+
+.restock-content input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.restock-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.restock-actions button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.restock-actions button:first-child {
+  background: #667eea;
+  color: white;
+}
+
+.restock-actions button:first-child:hover {
+  background: #5568d3;
+}
+
+.restock-actions button:last-child {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.restock-actions button:last-child:hover {
+  background: #d0d0d0;
+}
