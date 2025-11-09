@@ -1,4 +1,4 @@
-🍺 Brew Buddy
+🍺 Brew Buddy 
 
 Brew Buddy is a little app that helps housemates keep track of drinks, restocks, and costs. Everyone logs what they drink, inventory updates for all, and costs get split automatically each month.
 Basically, no more “who finished the last beer” arguments.
